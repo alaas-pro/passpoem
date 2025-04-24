@@ -11,14 +11,17 @@ const Footer = () => {
       <div className="mt-2 space-x-4">
         <button 
           onClick={() => setShowPrivacy(true)} 
-          className="text-primary hover:text-primary/80"
+          className="text-primary hover:text-primary/80 cursor-pointer"
         >
           Privacy
         </button>
         <a href="#" className="text-primary hover:text-primary/80">Terms</a>
         <a href="#" className="text-primary hover:text-primary/80">Contact</a>
       </div>
-      <PrivacyPolicy open={showPrivacy} onOpenChange={setShowPrivacy} />
+      <PrivacyPolicy 
+        open={showPrivacy} 
+        onOpenChange={(open) => setShowPrivacy(open)} 
+      />
     </footer>
   );
 };
