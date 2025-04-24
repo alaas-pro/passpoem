@@ -10,17 +10,39 @@ const QuestionSection = () => {
   const { 
     currentQuestionIndex, 
     answeredQuestions,
+    selectedQuestionIndices,
     setCurrentQuestionIndex, 
-    setAnsweredQuestions, 
+    setAnsweredQuestions,
+    addQuestionIndex,
     setCurrentStep 
   } = useAppState();
   
   const [currentAnswer, setCurrentAnswer] = useState("");
   const [progress, setProgress] = useState(0);
+  const [currentQuestionId, setCurrentQuestionId] = useState<number>(0);
+
+  // Initialize with a random question
+  useEffect(() => {
+    if (currentQuestionIndex === 0 && selectedQuestionIndices.length === 0) {
+      const randomIndex = Math.floor(Math.random() * questions.length);
+      setCurrentQuestionId(randomIndex);
+      addQuestionIndex(randomIndex);
+    }
+  }, [currentQuestionIndex, selectedQuestionIndices, addQuestionIndex]);
 
   useEffect(() => {
     setProgress((currentQuestionIndex / 5) * 100);
   }, [currentQuestionIndex]);
+
+  // Get a new random question that hasn't been asked before
+  const getRandomQuestion = (): number => {
+    let newIndex: number;
+    do {
+      newIndex = Math.floor(Math.random() * questions.length);
+    } while (selectedQuestionIndices.includes(newIndex));
+    
+    return newIndex;
+  };
 
   const handleSkip = () => {
     handleNextQuestion();
@@ -31,7 +53,7 @@ const QuestionSection = () => {
       setAnsweredQuestions([
         ...answeredQuestions,
         {
-          question: questions[currentQuestionIndex % questions.length],
+          question: questions[currentQuestionId],
           answer: currentAnswer.trim()
         }
       ]);
@@ -46,6 +68,11 @@ const QuestionSection = () => {
     
     if (nextIndex >= 5) {
       setCurrentStep("generating");
+    } else {
+      // Get the next random question
+      const nextQuestionId = getRandomQuestion();
+      setCurrentQuestionId(nextQuestionId);
+      addQuestionIndex(nextQuestionId);
     }
   };
 
@@ -72,7 +99,7 @@ const QuestionSection = () => {
         className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-8 md:p-10"
       >
         <h2 className="font-serif text-2xl text-primary mb-6">
-          {questions[currentQuestionIndex % questions.length]}
+          {questions[currentQuestionId]}
         </h2>
         <Textarea
           value={currentAnswer}
