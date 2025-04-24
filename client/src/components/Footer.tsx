@@ -1,13 +1,19 @@
-import { useLocation, Link } from "wouter";
+
+import { useLocation } from "wouter";
 
 const Footer = () => {
+  const [, setLocation] = useLocation();
+  
   return (
     <footer className="mt-12 text-center text-neutral-600 text-sm">
       <p>&copy; {new Date().getFullYear()} Passpoem. All rights reserved.</p>
       <div className="mt-2 space-x-4">
-        <Link href="/privacy" className="text-primary hover:text-primary/80 cursor-pointer font-medium">
+        <button 
+          onClick={() => setLocation("/privacy")} 
+          className="text-primary hover:text-primary/80 cursor-pointer font-medium border-none bg-transparent p-0"
+        >
           Privacy
-        </Link>
+        </button>
         <a href="#" className="text-primary hover:text-primary/80">Terms</a>
         <a href="#" className="text-primary hover:text-primary/80">Contact</a>
       </div>
