@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import { Link } from "wouter";
 
 const PrivacyPolicy = () => {
   return (
@@ -8,7 +9,7 @@ const PrivacyPolicy = () => {
         
         <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-8 md:p-10">
           <div className="mb-6 flex items-center">
-            <a 
+            <Link 
               href="/" 
               className="text-primary hover:text-primary/80 flex items-center cursor-pointer"
             >
@@ -17,7 +18,7 @@ const PrivacyPolicy = () => {
                   <path d="M19 12H5"/>
                 </svg>
                 Back to Home
-            </a>
+            </Link>
           </div>
           
           <h1 className="font-serif text-3xl md:text-4xl text-primary mb-8">Privacy Policy</h1>
