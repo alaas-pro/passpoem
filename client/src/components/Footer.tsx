@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import PrivacyPolicy from "./PrivacyPolicy";
 
@@ -20,5 +21,6 @@ const Footer = () => {
       <PrivacyPolicy open={showPrivacy} onOpenChange={setShowPrivacy} />
     </footer>
   );
+};
 
 export default Footer;
