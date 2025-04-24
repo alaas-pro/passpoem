@@ -100,18 +100,13 @@ const WaitlistSection = () => {
           <div className="h-64 rounded-lg shadow-md mx-auto mb-4 bg-secondary flex items-center justify-center">
             <svg 
               className="w-20 h-20 text-primary opacity-30" 
-              viewBox="0 0 512 512" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="24" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
+              viewBox="0 0 100 100" 
+              fill="currentColor"
             >
-              <rect x="136" y="224" width="240" height="176" rx="40" ry="40" />
-              <path d="M336 224v-64c0-44.2-35.8-80-80-80s-80 35.8-80 80v64" />
-              <path d="M256 300l-40 80 40-24 40 24-40-80z" />
-              <circle cx="256" cy="320" r="8" fill="currentColor" />
-              <rect x="236" y="380" width="40" height="12" fill="currentColor" />
+              <rect x="25" y="20" width="50" height="40" rx="8" ry="8" />
+              <path d="M65 20 V12 C65 4 58 -2 50 -2 S35 4 35 12 V20" />
+              <path d="M30 60 L50 30 L70 60 L50 48 L30 60 Z M40 75 H60 V82 H40 Z" />
+              <circle cx="50" cy="45" r="3" />
             </svg>
           </div>
           <p className="font-serif italic text-lg text-accent">Poetry in passwords, security in verse.</p>
