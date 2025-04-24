@@ -1,9 +1,9 @@
-import logo from "@/assets/passpoem-logo.svg";
+import logo from "@/assets/passpoem-logo-new.svg";
 
 const Header = () => {
   return (
     <header className="mb-8 flex flex-col items-center justify-center text-center">
-      <div className="w-20 h-20 mb-4">
+      <div className="w-24 h-24 mb-4">
         <img src={logo} alt="Passpoem Logo" className="w-full h-auto" />
       </div>
       <h1 className="font-serif text-4xl md:text-5xl text-primary">Passpoem</h1>
