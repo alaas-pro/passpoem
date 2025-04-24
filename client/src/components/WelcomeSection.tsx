@@ -23,18 +23,18 @@ const WelcomeSection = () => {
           <div className="relative rounded-lg shadow-md aspect-w-4 aspect-h-3 bg-secondary overflow-hidden">
             <svg 
               className="absolute inset-0 w-full h-full text-primary/20" 
-              viewBox="0 0 512 512" 
+              viewBox="0 0 100 100" 
               fill="none" 
               stroke="currentColor" 
-              strokeWidth="24" 
+              strokeWidth="4" 
               strokeLinecap="round" 
               strokeLinejoin="round"
             >
-              <rect x="136" y="224" width="240" height="176" rx="40" ry="40" />
-              <path d="M336 224v-64c0-44.2-35.8-80-80-80s-80 35.8-80 80v64" />
-              <path d="M256 300l-40 80 40-24 40 24-40-80z" />
-              <circle cx="256" cy="320" r="8" fill="currentColor" />
-              <rect x="236" y="380" width="40" height="12" fill="currentColor" />
+              <rect x="30" y="35" width="40" height="40" rx="8" ry="8" />
+              <path d="M60 35V25c0-5.5-4.5-10-10-10S40 19.5 40 25v10" />
+              <path d="M42 65 L50 45 L58 65 L50 60 L42 65" />
+              <circle cx="50" cy="52" r="2" fill="currentColor" />
+              <path d="M42 75 H58" strokeWidth="4" />
             </svg>
           </div>
         </div>
