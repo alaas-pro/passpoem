@@ -45,7 +45,11 @@ const QuestionSection = () => {
   };
 
   const handleSkip = () => {
-    handleNextQuestion();
+    // Get the next random question without incrementing the counter
+    const nextQuestionId = getRandomQuestion();
+    setCurrentQuestionId(nextQuestionId);
+    addQuestionIndex(nextQuestionId);
+    setCurrentAnswer("");
   };
 
   const handleAnswer = () => {
@@ -57,22 +61,19 @@ const QuestionSection = () => {
           answer: currentAnswer.trim()
         }
       ]);
-    }
-    handleNextQuestion();
-  };
-
-  const handleNextQuestion = () => {
-    const nextIndex = currentQuestionIndex + 1;
-    setCurrentQuestionIndex(nextIndex);
-    setCurrentAnswer("");
-    
-    if (nextIndex >= 5) {
-      setCurrentStep("generating");
-    } else {
-      // Get the next random question
-      const nextQuestionId = getRandomQuestion();
-      setCurrentQuestionId(nextQuestionId);
-      addQuestionIndex(nextQuestionId);
+      
+      const nextIndex = currentQuestionIndex + 1;
+      setCurrentQuestionIndex(nextIndex);
+      setCurrentAnswer("");
+      
+      if (nextIndex >= 5) {
+        setCurrentStep("generating");
+      } else {
+        // Get the next random question
+        const nextQuestionId = getRandomQuestion();
+        setCurrentQuestionId(nextQuestionId);
+        addQuestionIndex(nextQuestionId);
+      }
     }
   };
 
