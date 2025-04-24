@@ -1,19 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
-  <!-- Lock body with rounded corners -->
-  <rect x="136" y="224" width="240" height="176" rx="40" ry="40" 
-        fill="none" stroke="#5F9A85" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
-  
-  <!-- Lock arc -->
-  <path d="M336 224v-64c0-44.2-35.8-80-80-80s-80 35.8-80 80v64" 
-        fill="none" stroke="#5F9A85" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
-  
-  <!-- Pen nib -->
-  <path d="M256 300l-40 80 40-24 40 24-40-80z" 
-        fill="none" stroke="#5F9A85" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
-  
-  <!-- Pen point -->
-  <circle cx="256" cy="320" r="8" fill="#5F9A85"/>
-  
-  <!-- Pen base -->
-  <rect x="236" y="380" width="40" height="12" fill="#5F9A85"/>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none" stroke="#5F9A85" stroke-width="32" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="128" y="192" width="256" height="256" rx="32" ry="32" />
+  <path d="M256 192 L256 128 C256 80 224 48 176 48 C128 48 96 80 96 128 L96 192" />
+  <path d="M256 192 L256 448" />
+  <path d="M192 320 L256 384 L320 320" />
 </svg>
