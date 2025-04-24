@@ -1,5 +1,4 @@
-
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 
 const Footer = () => {
   const [, setLocation] = useLocation();
@@ -13,12 +12,9 @@ const Footer = () => {
     <footer className="mt-12 text-center text-neutral-600 text-sm">
       <p>&copy; {new Date().getFullYear()} Passpoem. All rights reserved.</p>
       <div className="mt-2 space-x-4">
-        <button 
-          onClick={navigateToPrivacy} 
-          className="text-primary hover:text-primary/80 cursor-pointer border-none bg-transparent p-0 font-medium"
-        >
+        <Link href="/privacy" className="text-primary hover:text-primary/80 cursor-pointer font-medium">
           Privacy
-        </button>
+        </Link>
         <a href="#" className="text-primary hover:text-primary/80">Terms</a>
         <a href="#" className="text-primary hover:text-primary/80">Contact</a>
       </div>
