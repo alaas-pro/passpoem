@@ -1,4 +1,4 @@
-import logo from "@/assets/passpoem-logo-new.svg";
+import logo from "@/assets/passpoem-logo-simple.svg";
 
 const Header = () => {
   return (

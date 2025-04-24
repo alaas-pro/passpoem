@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Lock body with rounded corners -->
+  <rect x="30" y="35" width="40" height="40" rx="8" ry="8" 
+        stroke="#5F9A85" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Lock arc -->
+  <path d="M60 35V25c0-5.5-4.5-10-10-10S40 19.5 40 25v10" 
+        stroke="#5F9A85" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Pen nib -->
+  <path d="M42 65 L50 45 L58 65 L50 60 L42 65" 
+        stroke="#5F9A85" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="50" cy="52" r="2" fill="#5F9A85"/>
+  
+  <!-- Base -->
+  <path d="M42 75 H58" stroke="#5F9A85" stroke-width="4" stroke-linecap="round"/>
+</svg>
