@@ -37,7 +37,7 @@ export async function generatePassword(answers: Question[]): Promise<PasswordGen
       }
       
       Requirements for the password:
-      1. At least 12 characters
+      1. At least 16 characters
       2. Must include at least one symbol (like !@#$%&*)
       3. Must include at least one number
       4. Should be inspired by the user's answers but not directly contain personal information
