@@ -1,13 +1,6 @@
 import { useLocation, Link } from "wouter";
 
 const Footer = () => {
-  const [, setLocation] = useLocation();
-  
-  const navigateToPrivacy = () => {
-    // This directly manipulates the browser history
-    setLocation("/PrivacyPolicy");
-  };
-  
   return (
     <footer className="mt-12 text-center text-neutral-600 text-sm">
       <p>&copy; {new Date().getFullYear()} Passpoem. All rights reserved.</p>
