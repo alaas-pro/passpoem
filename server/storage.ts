@@ -1,4 +1,6 @@
-import { InsertWaitlist, Waitlist } from "@shared/schema";
+import { InsertWaitlist, Waitlist, waitlist } from "@shared/schema";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 // Storage interface for the app
 export interface IStorage {
@@ -6,43 +8,30 @@ export interface IStorage {
   getWaitlist(): Promise<Waitlist[]>;
 }
 
-// In-memory storage implementation
-export class MemStorage implements IStorage {
-  private waitlist: Map<number, Waitlist>;
-  private currentId: number;
-
-  constructor() {
-    this.waitlist = new Map();
-    this.currentId = 1;
-  }
-
+// Database storage implementation
+export class DatabaseStorage implements IStorage {
   async addToWaitlist(data: InsertWaitlist): Promise<Waitlist> {
-    // Check if email already exists
-    const exists = Array.from(this.waitlist.values()).some(
-      entry => entry.email === data.email
-    );
-
-    if (exists) {
-      throw new Error("Email already registered");
+    try {
+      // Insert and return the waitlist entry
+      const [entry] = await db
+        .insert(waitlist)
+        .values(data)
+        .returning();
+      
+      return entry;
+    } catch (error: any) {
+      // Handle unique constraint violation
+      if (error.message?.includes('duplicate key value violates unique constraint')) {
+        throw new Error("Email already registered");
+      }
+      throw error;
     }
-
-    const id = this.currentId++;
-    const createdAt = new Date();
-    
-    const entry: Waitlist = {
-      id,
-      email: data.email,
-      createdAt
-    };
-    
-    this.waitlist.set(id, entry);
-    return entry;
   }
 
   async getWaitlist(): Promise<Waitlist[]> {
-    return Array.from(this.waitlist.values());
+    return await db.select().from(waitlist);
   }
 }
 
 // Export a singleton instance
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
