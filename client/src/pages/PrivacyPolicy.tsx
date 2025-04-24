@@ -1,13 +1,10 @@
-import { useCallback } from "react";
-import { useLocation } from "wouter";
 import Header from "@/components/Header";
 
 const PrivacyPolicy = () => {
-  const [location, setLocation] = useLocation();
-  
-  const navigateToHome = useCallback(() => {
-    setLocation("/");
-  }, [setLocation]);
+  const navigateToHome = () => {
+    // Use window.location for navigation
+    window.location.href = "/";
+  };
   return (
     <div className="min-h-screen px-4 py-12 bg-gradient-to-b from-primary/5 to-primary/10">
       <div className="container mx-auto max-w-4xl">
