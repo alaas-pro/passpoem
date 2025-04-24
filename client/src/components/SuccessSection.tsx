@@ -14,7 +14,7 @@ const SuccessSection = () => {
       className="w-full"
     >
       <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-8 md:p-10 text-center">
-        <div className="w-20 h-20 mx-auto mb-6 text-green-500">
+        <div className="w-20 h-20 mx-auto mb-6 text-primary">
           <CheckCircle className="w-full h-full" />
         </div>
         <h2 className="font-serif text-2xl md:text-3xl text-primary mb-4">Thank You!</h2>

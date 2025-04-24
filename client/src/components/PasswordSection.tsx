@@ -16,7 +16,7 @@ const PasswordSection = () => {
     { text: "Like a paper shield, this offers only the illusion of protection.", color: "text-orange-500" },
     { text: "This password stands like a wooden gate—sufficient against casual intruders.", color: "text-yellow-600" },
     { text: "Your password sings with strong protection, like ancient castle walls covered in flowering vines.", color: "text-green-600" },
-    { text: "A fortress of impenetrable verse—poetry and security in perfect harmony.", color: "text-blue-600" }
+    { text: "A fortress of impenetrable verse—poetry and security in perfect harmony.", color: "text-primary" }
   ];
 
   const moveToWaitlist = () => {
@@ -48,7 +48,7 @@ const PasswordSection = () => {
       "bg-orange-500", // Weak
       "bg-yellow-500", // Reasonable
       "bg-green-500",  // Strong
-      "bg-blue-500",   // Very Strong
+      "bg-primary",    // Very Strong
     ];
     
     return colors[score];
