@@ -17,7 +17,7 @@ const Home = () => {
       }
     `;
     document.head.appendChild(style);
-    
+
     return () => {
       // Clean up style when component unmounts
       document.head.removeChild(style);
@@ -28,7 +28,7 @@ const Home = () => {
     <div className="relative z-10 min-h-screen bg-secondary">
       {/* Background pattern */}
       <div className="fixed inset-0 z-0 bg-pattern"></div>
-      
+
       <div className="container mx-auto px-4 py-8 flex flex-col min-h-screen">
         <Header />
         <MainContent />
