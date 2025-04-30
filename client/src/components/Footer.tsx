@@ -7,8 +7,8 @@ const Footer = () => {
       <p>&copy; {new Date().getFullYear()} Passpoem. All rights reserved.</p>
       <div className="mt-2 space-x-4">
         <Link 
-          to="/privacy"
-          className="text-primary hover:text-primary/80 cursor-pointer font-medium"
+          to="/privacy" 
+          className="text-primary hover:text-primary/80 cursor-pointer font-medium no-underline"
         >
           Privacy
         </Link>
