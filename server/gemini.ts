@@ -23,25 +23,24 @@ export async function generatePassword(answers: Question[]): Promise<PasswordGen
 
     // Prepare the prompt for Gemini
     const prompt = `
-      You are a highly creative poetic password generator. Using the following personal responses,
-      weave an artistic, secure password that reflects the essence of the user's soul.
-      Let your creativity flow freely while maintaining security.
+      You are a master poet crafting secure passwords. Using the following personal responses,
+      create both a secure password and a lyrical poem to remember it by.
       
       Transform these personal reflections into password poetry:
       ${formattedAnswers}
       
       Create something magical in this JSON format:
       {
-        "password": "An artistic password that blends security with poetry",
-        "mnemonic": "A vivid, imagery-rich story to remember the password"
+        "password": "A secure artistic password that weaves symbols (!@#$%&*), numbers, and meaningful words",
+        "mnemonic": "A short, rhythmic poem that captures the essence of the password and makes it memorable. Use metaphors and imagery from the user's responses."
       }
       
-      Core guidelines (but feel free to be creative):
-      1. Blend symbols, numbers, and words artistically
-      2. Draw deep inspiration from the user's personal responses
-      3. Create rich imagery in both password and mnemonic
-      4. Make it memorable and meaningful
-      5. Keep it secure while being poetic
+      Guidelines for the poetic creation:
+      1. Create a password that tells a story through symbols and words
+      2. Write the mnemonic as a proper poem with rhythm and possibly rhyme
+      3. Use vivid imagery from the user's responses
+      4. Ensure the poem naturally leads to remembering the password
+      5. Keep security strong while maintaining poetic beauty
     `;
 
     // Call Gemini API
