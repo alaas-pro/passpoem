@@ -90,7 +90,9 @@ const PrivacyPolicy = () => {
           </div>
         </div>
         
-
+        <footer className="mt-12 text-center text-neutral-600 text-sm">
+          <p>&copy; {new Date().getFullYear()} Passpoem. All rights reserved.</p>
+        </footer>
       </div>
     </div>
   );
