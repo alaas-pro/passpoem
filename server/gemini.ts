@@ -8,9 +8,9 @@ export async function generatePassword(answers: Question[]): Promise<PasswordGen
   }
 
   try {
-    // Format the answers for the Gemini API
+    // Format the answers for the Gemini API - ensure both questions and answers are sent
     const formattedAnswers = answers
-      .map((qa, idx) => `Q${idx + 1}: ${qa.question}\nA${idx + 1}: ${qa.answer}`)
+      .map((qa, idx) => `Question ${idx + 1}: "${qa.question}"\nAnswer ${idx + 1}: "${qa.answer}"`)
       .join("\n\n");
 
     // Use environment variables for API keys
@@ -27,7 +27,11 @@ export async function generatePassword(answers: Question[]): Promise<PasswordGen
       create a memorable, secure password that uses characters, symbols, and numbers.
       Also create a poetic mnemonic to help remember it.
       
-      Here are the answers:
+      IMPORTANT: Pay attention to BOTH questions and answers. Use content and themes from the questions as 
+      well as the answers to inspire your password generation. Each pair of question and answer should 
+      contribute to the generated password.
+      
+      Here are the questions and answers:
       ${formattedAnswers}
       
       Generate a response in the following JSON format:
@@ -40,8 +44,9 @@ export async function generatePassword(answers: Question[]): Promise<PasswordGen
       1. At least 16 characters
       2. Must include at least one symbol (like !@#$%&*)
       3. Must include at least one number
-      4. Should be inspired by the user's answers but not directly contain personal information
+      4. Should be inspired by BOTH the questions and the user's answers
       5. Should be poetic and memorable
+      6. When creating the mnemonic, reference at least one theme from the questions and one theme from the answers
     `;
 
     // Call Gemini API
@@ -91,11 +96,19 @@ export async function generatePassword(answers: Question[]): Promise<PasswordGen
 
 // Fallback password generator for when API is unavailable
 function fallbackGenerator(answers: Question[]): PasswordGenResponse {
-  // Extract notable words from answers
-  const words = answers
+  // Extract notable words from both questions and answers
+  const wordsFromAnswers = answers
     .flatMap(qa => qa.answer.split(/\s+/))
     .filter(word => word.length > 3)
     .map(word => word.replace(/[^a-zA-Z]/g, ''));
+    
+  const wordsFromQuestions = answers
+    .flatMap(qa => qa.question.split(/\s+/))
+    .filter(word => word.length > 3)
+    .map(word => word.replace(/[^a-zA-Z]/g, ''));
+    
+  // Combine words from both sources
+  const words = [...wordsFromAnswers, ...wordsFromQuestions];
   
   // Get 2-3 random words from the answers
   const selectedWords: string[] = [];
@@ -129,8 +142,12 @@ function fallbackGenerator(answers: Question[]): PasswordGenResponse {
   // Assemble the password
   const password = `${formattedWords[0]}${randomSymbol1}${formattedWords[1]}${randomNum}${formattedWords[2]}${randomSymbol2}`;
   
-  // Create a mnemonic
-  const mnemonic = `Imagine a ${formattedWords[0].toLowerCase()} ${randomSymbol1} connecting to a ${formattedWords[1].toLowerCase()} with ${randomNum} ${formattedWords[2].toLowerCase()}s ${randomSymbol2} surrounding it all.`;
+  // Create a mnemonic that references both questions and answers
+  // Extract a theme word from the questions to use in the mnemonic
+  const questionThemes = ["question", "answer", "reflection", "memory", "feeling", "scent", "touch", "soul", "identity", "sound"];
+  const randomTheme = questionThemes[Math.floor(Math.random() * questionThemes.length)];
+  
+  const mnemonic = `As you ${randomTheme} about a ${formattedWords[0].toLowerCase()} ${randomSymbol1} connecting to a ${formattedWords[1].toLowerCase()} with ${randomNum} ${formattedWords[2].toLowerCase()}s ${randomSymbol2} surrounding it all.`;
   
   return {
     value: password,

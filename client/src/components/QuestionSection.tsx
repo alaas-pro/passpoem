@@ -54,6 +54,7 @@ const QuestionSection = () => {
 
   const handleAnswer = () => {
     if (currentAnswer.trim()) {
+      // Store both the question text and the user's answer
       setAnsweredQuestions([
         ...answeredQuestions,
         {
