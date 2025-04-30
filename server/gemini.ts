@@ -23,31 +23,25 @@ export async function generatePassword(answers: Question[]): Promise<PasswordGen
 
     // Prepare the prompt for Gemini
     const prompt = `
-      You are a poetic password generator. Based on the following answers to poetic questions, 
-      create a memorable, secure password that uses characters, symbols, and numbers.
-      Also create a poetic mnemonic to help remember it.
+      You are a highly creative poetic password generator. Using the following personal responses,
+      weave an artistic, secure password that reflects the essence of the user's soul.
+      Let your creativity flow freely while maintaining security.
       
-      IMPORTANT: Pay attention to BOTH questions and answers. Use content and themes from the questions as 
-      well as the answers to inspire your password generation. Each pair of question and answer should 
-      contribute to the generated password.
-      
-      Here are the questions and answers:
+      Transform these personal reflections into password poetry:
       ${formattedAnswers}
       
-      Generate a response in the following JSON format:
+      Create something magical in this JSON format:
       {
-        "password": "A secure password with 3+ words, numbers and symbols",
-        "mnemonic": "A short, poetic mnemonic to remember the password"
+        "password": "An artistic password that blends security with poetry",
+        "mnemonic": "A vivid, imagery-rich story to remember the password"
       }
       
-      Requirements for the password:
-      1. At least 16 characters
-      2. Must include at least one symbol (like !@#$%&*)
-      3. Must include at least one number
-      4. Should be inspired by BOTH the questions and the user's answers
-      5. Should be poetic and memorable
-      6. When creating the mnemonic, reference at least one theme from the questions and one theme from the answers
-      be creative!
+      Core guidelines (but feel free to be creative):
+      1. Blend symbols, numbers, and words artistically
+      2. Draw deep inspiration from the user's personal responses
+      3. Create rich imagery in both password and mnemonic
+      4. Make it memorable and meaningful
+      5. Keep it secure while being poetic
     `;
 
     // Call Gemini API
