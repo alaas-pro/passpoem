@@ -47,6 +47,7 @@ export async function generatePassword(answers: Question[]): Promise<PasswordGen
       4. Should be inspired by BOTH the questions and the user's answers
       5. Should be poetic and memorable
       6. When creating the mnemonic, reference at least one theme from the questions and one theme from the answers
+      be creative!
     `;
 
     // Call Gemini API
