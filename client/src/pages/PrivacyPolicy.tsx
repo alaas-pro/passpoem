@@ -1,8 +1,7 @@
 import Header from "@/components/Header";
-import { useLocation } from "wouter";
+import { Link } from "react-router-dom";
 
 const PrivacyPolicy = () => {
-  const [, setLocation] = useLocation();
   return (
     <div className="min-h-screen px-4 py-12 bg-gradient-to-b from-primary/5 to-primary/10">
       <div className="container mx-auto max-w-4xl">
@@ -10,16 +9,16 @@ const PrivacyPolicy = () => {
         
         <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-8 md:p-10">
           <div className="mb-6 flex items-center">
-            <button 
-              onClick={() => setLocation("/")} 
-              className="text-primary hover:text-primary/80 flex items-center cursor-pointer border-none bg-transparent p-0"
+            <Link 
+              to="/" 
+              className="text-primary hover:text-primary/80 flex items-center cursor-pointer"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
                   <path d="m12 19-7-7 7-7"/>
                   <path d="M19 12H5"/>
                 </svg>
                 Back to Home
-            </button>
+            </Link>
           </div>
           
           <h1 className="font-serif text-3xl md:text-4xl text-primary mb-8">Privacy Policy</h1>
