@@ -1,5 +1,4 @@
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import MainContent from "@/components/MainContent";
 import { useEffect } from "react";
 
@@ -32,7 +31,6 @@ const Home = () => {
       <div className="container mx-auto px-4 py-8 flex flex-col min-h-screen">
         <Header />
         <MainContent />
-        <Footer />
       </div>
     </div>
   );
