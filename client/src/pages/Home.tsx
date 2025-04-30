@@ -32,7 +32,10 @@ const Home = () => {
       <div className="container mx-auto px-4 py-8 flex flex-col min-h-screen">
         <Header />
         <MainContent />
-        <SimpleFooter />
+        {/* Make sure footer is clickable */}
+        <div className="relative z-10 pointer-events-auto">
+          <SimpleFooter />
+        </div>
       </div>
     </div>
   );

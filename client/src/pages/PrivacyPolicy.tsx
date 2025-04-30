@@ -11,8 +11,13 @@ const PrivacyPolicy = () => {
         <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-8 md:p-10">
           <div className="mb-6 flex items-center">
             <button 
-              onClick={() => setLocation("/")} 
-              className="text-primary hover:text-primary/80 flex items-center cursor-pointer border-none bg-transparent p-0"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log("Back to home clicked");
+                setLocation("/");
+              }} 
+              className="text-primary hover:text-primary/80 flex items-center cursor-pointer border-none bg-transparent p-0 relative z-50"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
                   <path d="m12 19-7-7 7-7"/>
