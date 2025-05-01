@@ -1,4 +1,5 @@
 import { Question, PasswordGenResponse } from "@shared/schema";
+import OpenAI from "openai";
 
 // Function to generate password using Gemini API
 export async function generatePassword(answers: Question[]): Promise<PasswordGenResponse> {
@@ -90,7 +91,37 @@ export async function generatePassword(answers: Question[]): Promise<PasswordGen
 
   } catch (error) {
     console.error("Error generating password with Gemini:", error);
-    return fallbackGenerator(answers);
+    try {
+      const openai = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY
+      });
+
+      const formattedAnswers = answers
+        .map((qa, idx) => `Question ${idx + 1}: "${qa.question}"\nAnswer ${idx + 1}: "${qa.answer}"`)
+        .join("\n\n");
+
+      const completion = await openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [{
+          role: "system",
+          content: "You are a master poet crafting secure passwords. Create a meaningful poem based on user responses, then extract a secure password from key elements of that poem."
+        }, {
+          role: "user",
+          content: `Create a poem and password based on these responses:\n${formattedAnswers}`
+        }],
+        response_format: { type: "json_object" }
+      });
+
+      const result = JSON.parse(completion.choices[0].message.content);
+      return {
+        value: result.password,
+        mnemonic: result.mnemonic,
+        score: 0
+      };
+    } catch (openAiError) {
+      console.error("Error generating password with OpenAI:", openAiError);
+      return fallbackGenerator(answers);
+    }
   }
 }
 
