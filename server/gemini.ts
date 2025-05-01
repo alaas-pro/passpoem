@@ -147,7 +147,12 @@ function fallbackGenerator(answers: Question[]): PasswordGenResponse {
   const questionThemes = ["question", "answer", "reflection", "memory", "feeling", "scent", "touch", "soul", "identity", "sound"];
   const randomTheme = questionThemes[Math.floor(Math.random() * questionThemes.length)];
   
-  const mnemonic = `As you ${randomTheme} about a ${formattedWords[0].toLowerCase()} ${randomSymbol1} connecting to a ${formattedWords[1].toLowerCase()} with ${randomNum} ${formattedWords[2].toLowerCase()}s ${randomSymbol2} surrounding it all.`;
+  const templates = [
+    `As you ${randomTheme} about a ${formattedWords[0].toLowerCase()} ${randomSymbol1} connecting to a ${formattedWords[1].toLowerCase()} with ${randomNum} ${formattedWords[2].toLowerCase()}s ${randomSymbol2} in harmony.`,
+    `Let the ${formattedWords[0].toLowerCase()} ${randomSymbol1} guide you to ${randomNum} ${formattedWords[1].toLowerCase()}s where ${formattedWords[2].toLowerCase()}s ${randomSymbol2} dance.`,
+    `Within the ${formattedWords[0].toLowerCase()} ${randomSymbol1} lies ${randomNum} ${formattedWords[1].toLowerCase()}s, each ${formattedWords[2].toLowerCase()} ${randomSymbol2} unique.`
+  ];
+  const mnemonic = templates[Math.floor(Math.random() * templates.length)];
   
   return {
     value: password,
