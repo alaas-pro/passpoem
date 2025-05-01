@@ -46,7 +46,7 @@ export async function generatePassword(answers: Question[]): Promise<PasswordGen
     `;
 
     // Call Gemini API
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${apiKey}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -104,10 +104,10 @@ export async function generatePassword(answers: Question[]): Promise<PasswordGen
         model: "gpt-3.5-turbo",
         messages: [{
           role: "system",
-          content: "You are a master poet crafting secure passwords. Create a meaningful poem based on user responses, then extract a secure password from key elements of that poem."
+          content: "You are a master poet crafting secure passwords. Create a meaningful poem based on user responses, then extract a secure password from key elements of that poem. Return response in JSON format."
         }, {
           role: "user",
-          content: `Create a poem and password based on these responses:\n${formattedAnswers}`
+          content: `Create a poem and password based on these responses and return in JSON format:\n${formattedAnswers}`
         }],
         response_format: { type: "json_object" }
       });
