@@ -101,13 +101,13 @@ export async function generatePassword(answers: Question[]): Promise<PasswordGen
         .join("\n\n");
 
       const completion = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
+        model: "gpt-3.5-turbo-0125",
         messages: [{
           role: "system",
-          content: "You are a master poet crafting secure passwords. Create a meaningful poem based on user responses, then extract a secure password from key elements of that poem. Return response in JSON format."
+          content: "You are a master poet crafting secure passwords. Create a meaningful poem based on user responses, then extract a secure password from key elements of that poem."
         }, {
           role: "user",
-          content: `Create a poem and password based on these responses and return in JSON format:\n${formattedAnswers}`
+          content: `Create a poem and password based on these responses. Return in this format: {"poem": "your poem here", "password": "secure password", "mnemonic": "explanation"}\n\nResponses:\n${formattedAnswers}`
         }],
         response_format: { type: "json_object" }
       });
