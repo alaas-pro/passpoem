@@ -77,6 +77,11 @@ export async function generatePassword(answers: Question[]): Promise<PasswordGen
     
     const generatedData = JSON.parse(jsonMatch[0]);
     
+    // Ensure we have valid data before returning
+    if (!generatedData.password || !generatedData.mnemonic) {
+      throw new Error("Invalid response format from Gemini");
+    }
+    
     return {
       value: generatedData.password,
       mnemonic: generatedData.mnemonic,

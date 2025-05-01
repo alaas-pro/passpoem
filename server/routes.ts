@@ -24,7 +24,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Generate password using Gemini API
       const response = await generatePassword(answers);
-      const { password: value, poem: mnemonic } = response;
+      const { value, mnemonic } = response;
 
       // Calculate password strength score
       const strength = zxcvbn(value);
