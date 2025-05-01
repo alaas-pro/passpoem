@@ -21,14 +21,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
 
       const { answers } = schema.parse(req.body);
-      
+
       // Generate password using Gemini API
-      const { value, mnemonic } = await generatePassword(answers);
-      
+      const response = await generatePassword(answers);
+      const { password: value, poem: mnemonic } = response;
+
       // Calculate password strength score
       const strength = zxcvbn(value);
       const score = strength.score; // 0-4 score
-      
+
       return res.json({
         value,
         mnemonic,

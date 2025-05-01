@@ -24,23 +24,24 @@ export async function generatePassword(answers: Question[]): Promise<PasswordGen
     // Prepare the prompt for Gemini
     const prompt = `
       You are a master poet crafting secure passwords. Using the following personal responses,
-      create both a secure password and a lyrical poem to remember it by.
+      first create a meaningful poem, then extract a secure password from key elements of that poem.
       
-      Transform these personal reflections into password poetry:
+      Personal reflections to inspire your poetry:
       ${formattedAnswers}
       
       Create something magical in this JSON format:
       {
-        "password": "A secure artistic password that weaves symbols (!@#$%&*), numbers, and meaningful words",
-        "mnemonic": "A short, rhythmic poem that captures the essence of the password and makes it memorable. Use metaphors and imagery from the user's responses."
+        "poem": "First create a 4-line poem with vivid imagery and metaphors from the user's responses. Make it meaningful and memorable.",
+        "password": "Then extract key words, numbers, and symbols (!@#$%&*) from the poem to create a secure password. The password should naturally flow from the poem's imagery.",
+        "mnemonic": "Finally, briefly explain how the password is derived from specific elements in the poem."
       }
       
-      Guidelines for the poetic creation:
-      1. Create a password that tells a story through symbols and words
-      2. Write the mnemonic as a proper poem with rhythm and possibly rhyme
-      3. Use vivid imagery from the user's responses
-      4. Ensure the poem naturally leads to remembering the password
-      5. Keep security strong while maintaining poetic beauty
+      Guidelines:
+      1. Make the poem personal and meaningful using the user's responses
+      2. Include strong imagery that can be translated into symbols
+      3. Weave numbers naturally into the poem's narrative
+      4. Ensure the final password has uppercase, lowercase, numbers, and symbols
+      5. The connection between poem and password should be clear but not obvious to others
     `;
 
     // Call Gemini API
