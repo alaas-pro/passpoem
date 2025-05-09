@@ -24,18 +24,26 @@ export async function generatePassword(answers: Question[]): Promise<PasswordGen
 
     // Prepare the prompt for Gemini
     const prompt = `
-      You are a master poet creating meaningful poems from personal experiences. Using the following responses,
-      craft a poem that captures the essence of these memories, then transform it into a secure password.
+      You are a master poet crafting soul-inspired passwords. First, create a meaningful poem from these personal responses,
+      then transform key elements into a secure password.
       
       Personal reflections to inspire your poetry:
       ${formattedAnswers}
       
-      Create something magical in this JSON format:
+      Create a response in this JSON format:
       {
-        "poem": "Create a 4-6 line poem with vivid imagery and personal metaphors from the user's responses. Each line should contain elements that can be transformed into password characters.",
-        "password": "Extract meaningful characters from key words in the poem, including uppercase letters from the start of important words, numbers that reflect quantities or dates mentioned, and symbols (!@#$%&*) that mirror the imagery.",
-        "mnemonic": "The poem itself will serve as the mnemonic, with a brief note on which elements were used to create the password."
+        "poem": "A 4-6 line poem that weaves together the emotional essence and imagery from the responses. Make it personal and memorable.",
+        "derivation": "Explain which poetic elements will become password characters (e.g., 'Mountain' becomes 'M', '@' represents paths crossed)",
+        "password": "A secure string using uppercase from key words, numbers from quantities/dates, and symbols (!@#$%&*) that echo the imagery",
+        "mnemonic": "The complete poem, followed by a brief key showing which elements became password characters"
       }
+      
+      Guidelines:
+      1. Focus on creating a meaningful, personal poem first
+      2. Use vivid imagery that naturally suggests symbols (stars to *, hearts to @)
+      3. Include specific numbers from the responses or meaningful counts
+      4. Ensure the final password has uppercase, lowercase, numbers, and symbols
+      5. Make the poem memorable enough to help recall the password
       
       Guidelines:
       1. The poem should be the primary focus, telling a personal story from the responses
