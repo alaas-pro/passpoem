@@ -24,25 +24,25 @@ export async function generatePassword(answers: Question[]): Promise<PasswordGen
 
     // Prepare the prompt for Gemini
     const prompt = `
-      You are a master poet crafting secure passwords. Using the following personal responses,
-      first create a meaningful poem, then extract a secure password from key elements of that poem.
+      You are a master poet creating meaningful poems from personal experiences. Using the following responses,
+      craft a poem that captures the essence of these memories, then transform it into a secure password.
       
       Personal reflections to inspire your poetry:
       ${formattedAnswers}
       
       Create something magical in this JSON format:
       {
-        "poem": "First create a 4-line poem with vivid imagery and metaphors from the user's responses. Make it meaningful and memorable.",
-        "password": "Then extract key words, numbers, and symbols (!@#$%&*) from the poem to create a secure password. The password should naturally flow from the poem's imagery.",
-        "mnemonic": "Finally, briefly explain how the password is derived from specific elements in the poem."
+        "poem": "Create a 4-6 line poem with vivid imagery and personal metaphors from the user's responses. Each line should contain elements that can be transformed into password characters.",
+        "password": "Extract meaningful characters from key words in the poem, including uppercase letters from the start of important words, numbers that reflect quantities or dates mentioned, and symbols (!@#$%&*) that mirror the imagery.",
+        "mnemonic": "The poem itself will serve as the mnemonic, with a brief note on which elements were used to create the password."
       }
       
       Guidelines:
-      1. Make the poem personal and meaningful using the user's responses
-      2. Include strong imagery that can be translated into symbols
-      3. Weave numbers naturally into the poem's narrative
-      4. Ensure the final password has uppercase, lowercase, numbers, and symbols
-      5. The connection between poem and password should be clear but not obvious to others
+      1. The poem should be the primary focus, telling a personal story from the responses
+      2. Use concrete imagery that can naturally translate to symbols (e.g., stars to *, paths to @)
+      3. Include countable elements or time references that become numbers
+      4. Ensure the final password contains uppercase, lowercase, numbers, and symbols
+      5. Make the poem memorable so it can serve as a natural mnemonic
     `;
 
     // Call Gemini API
