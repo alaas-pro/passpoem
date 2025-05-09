@@ -116,10 +116,20 @@ export async function generatePassword(answers: Question[]): Promise<PasswordGen
         model: "gpt-3.5-turbo-0125",
         messages: [{
           role: "system",
-          content: "You are a master poet crafting secure passwords. Create a meaningful poem based on user responses, then extract a secure password from key elements of that poem. Return response in JSON format."
+          content: "You are a master poet who creates meaningful poems from personal reflections. First craft a poem that captures the essence of the user's responses. Then, use key elements from the poem to create a secure password. The poem itself will serve as the mnemonic device."
         }, {
           role: "user",
-          content: `Create a poem and password based on these responses. Return a JSON response in this format: {"poem": "your poem here", "password": "secure password", "mnemonic": "explanation"}\n\nResponses:\n${formattedAnswers}`
+          content: `Create a meaningful poem from these personal responses. Then use poetic elements (key words, imagery, emotions) to craft a secure password. The poem should naturally help remember the password.
+
+Responses:
+${formattedAnswers}
+
+Return a JSON response with:
+{
+  "poem": "A 4-6 line poem that weaves together the emotional essence from the responses",
+  "password": "A secure password using uppercase from key words, numbers from meaningful quantities, and symbols that echo the imagery",
+  "mnemonic": "The complete poem, followed by brief notes showing which elements became password characters"
+}`
         }],
         response_format: { type: "json_object" }
       });
