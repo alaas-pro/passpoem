@@ -3,7 +3,7 @@ import { useAppState } from "@/hooks/useAppState";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { apiRequest } from "@/lib/queryClient";
-import { CopyIcon } from "lucide-react";
+import { CopyIcon, DownloadIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const PasswordSection = () => {
@@ -40,6 +40,25 @@ const PasswordSection = () => {
     }, 2000);
   };
 
+  const downloadPassword = () => {
+    const content = `Your Passpoem Password\n\nPassword: ${password.value}\nMnemonic: ${password.mnemonic}`;
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'passpoem-password.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+    
+    toast({
+      title: "Downloaded!",
+      description: "Password file has been downloaded",
+      duration: 2000,
+    });
+  };
+
   const getSegmentColor = (index: number, score: number) => {
     if (index > score) return "bg-gray-200";
     
@@ -68,14 +87,24 @@ const PasswordSection = () => {
         <div className="bg-secondary/70 rounded-lg p-6 mb-6 border border-primary/20">
           <div className="flex justify-between items-center mb-2">
             <span className="text-sm text-neutral-600">Your unique password:</span>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={copyPassword}
-              className="text-primary hover:text-primary/80 text-sm p-1 h-auto"
-            >
-              {copied ? "Copied!" : <CopyIcon className="h-4 w-4 mr-1" />}
-            </Button>
+            <div className="flex gap-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={downloadPassword}
+                className="text-primary hover:text-primary/80 text-sm p-1 h-auto"
+              >
+                <DownloadIcon className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={copyPassword}
+                className="text-primary hover:text-primary/80 text-sm p-1 h-auto"
+              >
+                {copied ? "Copied!" : <CopyIcon className="h-4 w-4" />}
+              </Button>
+            </div>
           </div>
           <p className="font-mono text-xl md:text-2xl tracking-wide break-all">
             {password.value}
