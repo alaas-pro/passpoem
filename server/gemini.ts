@@ -47,7 +47,7 @@ export async function generatePassword(answers: Question[]): Promise<PasswordGen
 
     // Call Gemini API
     console.log("Attempting Gemini API call...");
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${apiKey}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
